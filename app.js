@@ -60,7 +60,7 @@ async function getData(){
 */
 
 
-//insertData();
+insertData();
 getData(); 
 
 app.use(router.routes()) 
