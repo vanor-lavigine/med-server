@@ -51,16 +51,16 @@ async function getData(){
   
 }
 
-async function insertData(){
+/*async function insertData(){
     let sql = 'INSERT INTO USER(id,userName,role) VALUES(4,"小黄",1)';
    // var addSqlParams = ['4','小黄','1'];
     let data = await query(sql)
     
 }
+*/
 
 
-
-insertData();
+//insertData();
 getData(); 
 
 app.use(router.routes()) 
