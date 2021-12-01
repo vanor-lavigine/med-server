@@ -66,8 +66,9 @@ getData();
 app.use(router.routes()) 
    .use(router.allowedMethods());
 
-
    
+
+
 
 app.listen(8000)
 console.log('koa2 is starting at port 8000');
