@@ -57,17 +57,18 @@ router.get('/', async (ctx, next) => {
 });
 
 
-router.get('/mysql',async (ctx,next)=>{
+/*router.get('/mysql',async (ctx,next)=>{
     ctx.response.body = `<h1>mysql</h1>
       <form action="/select" method = "post">
-          <p>Id: <input id = "id" value ="koa"></p>
+          <p>Id: <input id = "id" value =""></p>
           <p><input type ="submit" value="submit"></p>
           `
-})
+})*/
 
-router.post('/select',async(ctx,next)=>{
-    
-})
+/*router.get('/select/:id ',async(ctx,next)=>{
+    var 
+       
+})*/
 
 //POST请求
 router.post('/signin', async (ctx, next) => {
@@ -86,16 +87,18 @@ router.post('/signin', async (ctx, next) => {
 router.get('/query-user/:id', async (ctx, next) => {
     const id = ctx.params.id;
 
-    const data = await query(`SELECT ID=${id} FROM USER`);
+    const data = await query(`SELECT * FROM USER WHERE ID=${id}`);
     console.log('id', id, ctx.request.body);
     ctx.response.body = data;
 })
 
 router.post('/add-user', async (ctx, next) => {
     const id = ctx.request.body.id;
-    // const data = await query(`SELECT ID=${id} FROM USER`);
-    console.log('id', id, ctx.request.body);
-    ctx.response.body = `<div>addd=${id}</div>`
+    const Username = ctx.request.body.userName;
+    const role = ctx.request.body.role;
+     const data = await query(`INSERT INTO USER(id,userName,role) VALUES(7,'小黄',1)`);
+    console.log('id','username','role', id,Username,role,ctx.request.body);
+    ctx.response.body = `<div>addd=${data}</div>`
 })
 
 router.get('/', async (ctx, next) => {
