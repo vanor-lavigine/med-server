@@ -90,16 +90,33 @@ router.get('/query-user/:id', async (ctx, next) => {
     const data = await query(`SELECT * FROM USER WHERE ID=${id}`);
     console.log('id', id, ctx.request.body);
     ctx.response.body = data;
-})
+});
 
 router.post('/add-user', async (ctx, next) => {
     const id = ctx.request.body.id;
     const Username = ctx.request.body.userName;
     const role = ctx.request.body.role;
-     const data = await query(`INSERT INTO USER(id,userName,role) VALUES(7,'小黄',1)`);
-    console.log('id','username','role', id,Username,role,ctx.request.body);
+     const data = await query(`INSERT INTO USER SET ID=${id}`);
+    console.log('id','username','role', id,ctx.request.body);
     ctx.response.body = `<div>addd=${data}</div>`
+});
+
+
+router.post('/delete',async(ctx,next)=>{
+    const id = ctx.request.body.id;
+    const data = await query(`DELETE FROM USER WHERE ID=${id}`);
+    console.log('id',id,ctx.request.body);
+    ctx.response.body=data;
+});
+router.post('/update',async(ctx,next)=>{
+    const id = ctx.request.body.id;
+    const Role= ctx.request.body.role;
+     const data = await query(`UPDATE USER SET role=${Role} WHERE ID=${id}`);
+     console.log('id','role',id ,Role,ctx.request.body);
+     ctx.response.body = data;
+
 })
+
 
 router.get('/', async (ctx, next) => {
     ctx.response.body = '<h1>Index</h1>';
